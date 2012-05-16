@@ -1,0 +1,37 @@
+apply plugin:'java'
+
+
+repositories{
+	mavenCentral()
+}
+
+dependencies{
+	testCompile "org.testng:testng:6.5.2"
+}
+
+test{
+	useTestNG()
+	ignoreFailures = true 
+}
+
+task secondTry(type:Test){
+ 	onlyIf{
+ 		file("build/reports/tests/testng-failed.xml").exists()	
+ 	}
+
+ 	dependsOn test
+
+ 	sourceSets.test
+ 	testClassesDir = sourceSets.test.output.classesDir
+ 	classpath = sourceSets.test.runtimeClasspath
+ 	testSrcDirs = sourceSets.test.java.srcDirs as List
+ 
+ 	testReportDir = file("$buildDir/reports/secondTry")
+ 	
+
+ 	useTestNG(){
+		suites("$buildDir/reports/tests/testng-failed.xml")
+ 	}
+ }
+
+ task allTests(dependsOn: tasks.withType(Test))
