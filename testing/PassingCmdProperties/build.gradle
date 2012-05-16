@@ -1,0 +1,34 @@
+apply plugin:'java'
+apply plugin:SystemPropertiesMappingPlugin
+
+repositories{
+	mavenCentral()
+}
+
+dependencies{
+	testCompile "junit:junit:4.10"
+}
+
+
+test{
+	mappedSystemProperties= ['foo', 'bar'] 
+}
+
+
+class SystemPropertiesMappingPlugin implements Plugin<Project>{
+
+	public void apply(Project project){
+		project.tasks.withType(Test){ testTask ->
+			testTask.ext.mappedSystemProperties = []
+		
+			doFirst{
+				mappedSystemProperties.each{ mappedPropertyKey ->
+					def systemPropertyValue = System.getProperty(mappedPropertyKey)
+					if(systemPropertyValue){
+						testTask.systemProperty(mappedPropertyKey, systemPropertyValue)
+					}
+				}
+			}
+		}
+	}
+}
