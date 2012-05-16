@@ -1,0 +1,23 @@
+configurations.add('rhinoJS')
+dependencies {
+    rhinoJS 'rhino:js:1.6R1'           
+}
+
+repositories {
+    mavenCentral()
+}
+
+def path = ant.path {
+        fileset(dir: "src/scripts", includes: '*.js')
+}
+
+path.list().each { jsPath ->
+    def jsFile = new File(jsPath)
+    def jsFileWoExt = jsFile.name.lastIndexOf('.').with {it != -1 ? jsFile.name[0..<it] : jsFile.name}
+    task "JSCompile$jsFileWoExt"(type:JavaExec) {
+        main = "org.mozilla.javascript.tools.jsc.Main"
+        classpath = configurations.rhinoJS
+        args = ["-o", "${jsFileWoExt}.class", "-package", "scripts", "${jsPath}" ]        
+    }
+}
+task compileScripts(dependsOn: tasks.matching { Task task -> task.name.startsWith("JSCompile")})
