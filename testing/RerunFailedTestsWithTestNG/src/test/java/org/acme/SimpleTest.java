@@ -18,7 +18,7 @@ public class SimpleTest {
  @Test(groups = { "slow" })
  public void aSlowTest() {
     System.out.println("Slow test");
-    //fail();
+    fail();
  }
 
 }
