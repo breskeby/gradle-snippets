@@ -1,0 +1,39 @@
+
+buildscript {
+    repositories {
+        maven { url 'http://repo.jfrog.org/artifactory/gradle-plugins' }
+    }
+    dependencies {
+        classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '2.0.12')
+    }
+}
+
+apply plugin: 'artifactory'
+
+group = "org.acme"
+version = "1.0-snapshot"
+
+configurations {
+  myConfig
+}
+
+artifacts{
+	myConfig file("label.txt")
+}
+
+
+artifactory {
+  contextUrl = 'http://localhost:8081/artifactory'   //The base Artifactory URL if not overridden by the publisher/resolver
+  publish {
+    //A closure defining publishing information
+    repository {
+      repoKey = 'acme'   //The Artifactory repository key to publish to
+      username = 'user'          //The publisher user name
+      password = 'password'       //The publisher password
+    }
+  }
+}
+
+artifactoryPublish {
+    publishConfigs ('archives', 'myConfig')
+}
