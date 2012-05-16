@@ -1,0 +1,26 @@
+group = "org.acme"
+version = "1.0-snapshot"
+
+configurations {
+  myConfig
+}
+
+artifacts{
+	myConfig file("label.txt")
+}
+
+task uploadLabel(type: Upload){
+	configuration = configurations.myConfig
+	repositories { 
+    	maven { 
+      		url 'http://localhost:8081/artifactory/acme'
+      		credentials {
+        		username 'user' 
+        		password 'password' 
+      		}
+    	} 
+	}
+}
+
+
+
