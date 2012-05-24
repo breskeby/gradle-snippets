@@ -1,0 +1,29 @@
+apply plugin:'base'
+
+group = "org.acme"
+version = "1.0-snapshot"
+
+configurations {
+  batchConfig
+}
+
+artifacts{
+  file("nfsstorage").eachFile{ zipFile ->
+    batchConfig zipFile
+  }
+}
+
+uploadBatchConfig{
+  repositories { 
+      ivy { 
+          url 'http://localhost:8081/artifactory/acme'
+          credentials {
+            username 'user' 
+            password 'password' 
+          }
+      } 
+  }
+}
+
+
+
