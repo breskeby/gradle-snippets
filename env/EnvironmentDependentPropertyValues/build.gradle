@@ -1,0 +1,16 @@
+apply plugin:'java'
+
+def profileProperties = [
+	test:[prop1:"testValue1", prop2:"testValue2"],
+   	dev:[prop1:"devValue1", prop2:"devValue2"],
+  	prod:[prop1:"prodValue1", prop2:"prodValue2"]
+]
+
+def usedProfile = "dev"
+if(project.hasProperty('profile')){
+	usedProfile = project.getProperty("profile")
+}
+
+processResources{
+	expand(profileProperties[usedProfile])
+}
