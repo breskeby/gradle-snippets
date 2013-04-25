@@ -1,5 +1,5 @@
 group = "org.acme"
-version = "1.0-snapshot"
+version = "1.0"
 
 configurations {
   myConfig
@@ -15,7 +15,7 @@ task uploadLabel(type: Upload){
     	maven { 
       		url 'http://localhost:8081/artifactory/acme'
       		credentials {
-        		username 'user' 
+        		username 'admin' 
         		password 'password' 
       		}
     	} 

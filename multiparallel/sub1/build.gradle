@@ -1,0 +1,7 @@
+classes{
+	outputs.upToDateWhen{false}
+	doFirst{
+		sleep 5000
+		println "compilation ${project.name} done"
+	}
+}

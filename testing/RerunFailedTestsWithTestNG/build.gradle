@@ -30,7 +30,7 @@ task secondTry(type:Test){
  	
 
  	useTestNG(){
-		suites("$buildDir/reports/tests/testng-failed.xml")
+		//suites("$buildDir/reports/tests/testng-failed.xml")
  	}
  }
 

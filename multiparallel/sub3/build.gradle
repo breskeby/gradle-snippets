@@ -1,0 +1,4 @@
+dependencies{
+	compile project(":sub1")
+	compile project(":sub2")
+}

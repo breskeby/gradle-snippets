@@ -9,7 +9,7 @@ configurations {
 
 artifacts{
   file("nfsstorage").eachFile{ zipFile ->
-    batchConfig zipFile
+               batchConfig file: zipFile, name: zipFile.name, classifier: "platform", module: "installer"
   }
 }
 
@@ -24,6 +24,5 @@ uploadBatchConfig{
       } 
   }
 }
-
 
 

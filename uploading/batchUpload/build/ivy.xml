@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+	<info organisation="org.acme"
+		module="batchUpload"
+		revision="1.0-snapshot"
+		status="integration"
+		publication="20120525094558"
+	/>
+	<configurations>
+		<conf name="archives" visibility="public" description="Configuration for archive artifacts."/>
+		<conf name="batchConfig" visibility="public"/>
+		<conf name="default" visibility="public" description="Configuration for default artifacts."/>
+	</configurations>
+	<publications>
+		<artifact name="test1.txt" type="txt" ext="txt" conf="archives,batchConfig" m:classifier="platform"/>
+		<artifact name="test2.txt" type="txt" ext="txt" conf="archives,batchConfig" m:classifier="platform"/>
+		<artifact name="test3.txt" type="txt" ext="txt" conf="archives,batchConfig" m:classifier="platform"/>
+		<artifact name="test4.txt" type="txt" ext="txt" conf="archives,batchConfig" m:classifier="platform"/>
+		<artifact name="test5.txt" type="txt" ext="txt" conf="archives,batchConfig" m:classifier="platform"/>
+	</publications>
+</ivy-module>
