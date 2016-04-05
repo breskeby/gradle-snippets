@@ -1,16 +1,1 @@
-With this repository I want to share small examples of Gradle build files which go beyond the snippets of the gradle userguide. 
-
-For more information about Gradle, please visit http://gradle.org
-
-## Contributing
-
-If you have interesting use cases or Gradle snippets to share, feel free to send me a pull request and I will merge your samples into this repository. 
-
-## Next
-
-Most of the examples that are created here are driven by requests at the gradle forum at http://forums.gradle.org/gradle or at stackoverflow (http://stackoverflow.com/search?tab=newest&q=gradle). So there is no roadmap here.
-
-## Todo
-
-At the moment, I set up no automation for testing these snippets against different gradle versions. Ping me if you encounter problems via mail (rene.groeschke@gradleware.com) or via twitter (@breskeby)
-
+cat: test: No such file or directory
